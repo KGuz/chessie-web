@@ -420,9 +420,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "yew-app"
+name = "yew-chess"
 version = "0.1.0"
 dependencies = [
+ "gloo-utils",
  "yew",
 ]
 
