@@ -65,7 +65,7 @@ html, body {
     overflow: hidden;
 }
 
-.main {
+main {
     grid-column: 2;
     grid-row: 2;
 
@@ -204,6 +204,7 @@ header a {
 }
 
 .board button {
+    cursor: pointer;
     border: 0;
     background-color: rgba(255, 255, 255, 0);
 }
@@ -211,7 +212,13 @@ header a {
 .board button:hover {
     border: var(--edge) solid var(--highlight);
     border-radius: 10%;
-    background-color: rgba(230, 212, 163, 0.25);
+    background-color: rgba(230, 212, 163, 0.4);
+}
+
+.board button:focus {
+    border: var(--edge) solid var(--bright-blue);
+    border-radius: 10%;
+    background-color: rgba(113, 149, 134, 0.4);
 }
 
 .evaluation {
