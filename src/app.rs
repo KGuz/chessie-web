@@ -1,12 +1,10 @@
-use crate::{
-    components::{square::*, styled_svg::*},
-    resources::*,
-};
-use yew::{html, virtual_dom::vlist::VList, Component, Context, Html};
+use crate::components::{board::*, evalbar::*, square::*};
+use yew::{html, Component, Context, Html};
 
 #[derive(Clone, Copy)]
 pub enum Msg {
     UpdateBoard(SquareData),
+    PropagateBoardState([SquareType; 64]),
 }
 
 pub struct App {
@@ -24,18 +22,12 @@ impl Component for App {
     fn view(&self, ctx: &Context<Self>) -> Html {
         let callback = &ctx.link().callback(move |sq| Msg::UpdateBoard(sq));
 
-        let mut square_components = VList::new();
-        square_components.add_children((0..64).rev().map(|n| {
-            html! { <SquareComponent { callback } idx={ n } square={ self.chessboard[n] }/> }
-        }));
-
         html! {
             <main>
                 <header><a>{ "Chess Inference Engine" }</a></header>
                 <div class="chess">
-                    <StyledSVGComponent class="chessboard-svg" svg={ CHESSBOARD_SVG }/>
-                    <div class="board">{ square_components }</div>
-                    <div class="evaluation"></div>
+                    <BoardComponent {callback} chessboard={ self.chessboard }/>
+                    <EvalBarComponent ..Evaluation::Value(0.0).into()/>
                 </div>
                 <div class="preview"></div>
                 <div class="details"></div>
@@ -47,8 +39,9 @@ impl Component for App {
         match msg {
             Msg::UpdateBoard(SquareData { pos, typ }) => {
                 self.chessboard[pos] = typ;
-                false
+                true
             }
+            Msg::PropagateBoardState(_state) => false,
         }
     }
 }

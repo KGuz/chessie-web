@@ -50,9 +50,14 @@ impl Component for SquareComponent {
                     true
                 }
                 key if SquareType::from(key) != SquareType::Empty => {
-                    self.square.typ = SquareType::from(key);
-                    ctx.props().callback.emit(self.square);
-                    true
+                    let typ = SquareType::from(key);
+                    if typ != self.square.typ {
+                        self.square.typ = typ;
+                        ctx.props().callback.emit(self.square);
+                        true
+                    } else {
+                        false
+                    }
                 }
                 _ => false,
             },

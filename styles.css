@@ -15,6 +15,9 @@
     --fg: rgb(133, 133, 133);
     --highlight: rgb(230, 212, 163);
 
+    --white-pice: rgb(133, 133, 133);
+    --black-pice: rgb(30, 30, 30);
+
     --bright-blue: rgb(113, 149, 134);
     --bright-cyan: rgb(125, 182, 105);
     --bright-green: rgb(170, 176, 30);
@@ -129,8 +132,8 @@ header a {
     width: calc(100vmin - 2*var(--margin) - 4*var(--edge) - 8em + 6vmin);
 
     display: grid;
-    grid-template-columns: 0.5vmin 1fr 6vmin;
-    grid-template-rows: 1fr 0.5vmin;
+    grid-template-columns: .5vmin 1fr 6vmin;
+    grid-template-rows: 1fr .5vmin;
     overflow: hidden;
 }
 
@@ -180,27 +183,27 @@ header a {
 }
 
 .black-pice-svg #fill {
-    fill: var(--bg);
+    fill: var(--black-pice);
 }
 
 .black-pice-svg #contour {
-    stroke: var(--fg);
+    stroke: var(--white-pice);
 }
 
 .black-pice-svg #outline {
-    stroke: var(--bg);
+    stroke: var(--black-pice);
 }
 
 .white-pice-svg #fill {
-    fill: var(--fg);
+    fill: var(--white-pice);
 }
 
 .white-pice-svg #contour {
-    stroke: var(--bg);
+    stroke: var(--black-pice);
 }
 
 .white-pice-svg #outline {
-    stroke: var(--fg);
+    stroke: var(--white-pice);
 }
 
 .board button {
@@ -222,8 +225,40 @@ header a {
 }
 
 .evaluation {
-    /* !DEBUG ONLY! */ border: var(--edge) dashed rgb(113, 149, 134) !important; background-color: rgba(113, 149, 134, 0.2) !important;
     grid-column: 3;
     grid-row: 1;
+
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    gap: 0;
+}
+
+.bar-label {
+
+    -webkit-text-stroke-width: 0;
+    color: var(--fg);
+    text-align: center;
+    text-overflow: hidden;
+    align-self: flex-end;
+    margin-top: 5px;
+}
+
+.bar-outline {
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+
+    border: 3px solid var(--fg);
+    background-color: var(--white-pice);
+    border-radius: var(--radius);
     overflow: hidden;
+}
+
+.bar-fill {
+    background-color: var(--black-pice);
+    overflow: hidden;
+    height: 50%;
+    transition: height 0.5s ease-in-out;
 }
