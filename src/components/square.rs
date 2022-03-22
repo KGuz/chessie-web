@@ -2,25 +2,25 @@ use crate::components::piece::*;
 use web_sys::KeyboardEvent;
 use yew::{html, Callback, Component, Context, Html, Properties};
 
-pub enum SuqareComponentMsg {
+pub enum SuqareMsg {
     Replace(KeyboardEvent),
 }
 
 #[derive(PartialEq, Properties)]
-pub struct SquareComponentProps {
+pub struct SquareProps {
     pub callback: Callback<SquareData>,
     pub idx: usize,
     pub square: SquareType,
 }
 
-pub struct SquareComponent {
+pub struct Square {
     square: SquareData,
     notation: String,
 }
 
-impl Component for SquareComponent {
-    type Message = SuqareComponentMsg;
-    type Properties = SquareComponentProps;
+impl Component for Square {
+    type Message = SuqareMsg;
+    type Properties = SquareProps;
 
     fn create(ctx: &Context<Self>) -> Self {
         Self {
@@ -31,7 +31,7 @@ impl Component for SquareComponent {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let onkeydown = ctx.link().callback(|e: KeyboardEvent| {
-            SuqareComponentMsg::Replace(e)
+            SuqareMsg::Replace(e)
         });
 
         html! {
@@ -43,7 +43,7 @@ impl Component for SquareComponent {
 
     fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
-            SuqareComponentMsg::Replace(e) => match e.key().as_str() {
+            SuqareMsg::Replace(e) => match e.key().as_str() {
                 "Delete" | "Backspace" => {
                     self.square.typ = SquareType::Empty;
                     ctx.props().callback.emit(self.square);

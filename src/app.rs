@@ -1,4 +1,4 @@
-use crate::components::{board::*, evalbar::*, square::*};
+use crate::components::{board::*, evalbar::*, square::*, styled_svg::*, dragndrop::*};
 use yew::{html, Component, Context, Html};
 
 #[derive(Clone, Copy)]
@@ -26,10 +26,12 @@ impl Component for App {
             <main>
                 <header><a>{ "Chess Inference Engine" }</a></header>
                 <div class="chess">
-                    <BoardComponent {callback} chessboard={ self.chessboard }/>
+                    <Board {callback} chessboard={ self.chessboard }/>
                     <EvalBarComponent ..Evaluation::Value(0.0).into()/>
                 </div>
-                <div class="preview"></div>
+                <div class="preview">
+                    <DragAndDrop />
+                </div>
                 <div class="details"></div>
             </main>
         }

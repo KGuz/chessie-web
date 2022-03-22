@@ -11,3 +11,5 @@ pub const BISHOP_SVG: &'static str = include_str!("../resources/images/Bishop.sv
 pub const KNIGHT_SVG: &'static str = include_str!("../resources/images/Knight.svg");
 
 pub const PAWN_SVG: &'static str = include_str!("../resources/images/Pawn.svg");
+
+pub const UPLOAD_SVG: &'static str = include_str!("../resources/images/UploadCloud.svg");

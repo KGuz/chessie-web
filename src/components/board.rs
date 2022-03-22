@@ -3,15 +3,15 @@ use crate::resources::*;
 use yew::{html, virtual_dom::vlist::VList, Callback, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
-pub struct BoardComponentProps {
+pub struct BoardProps {
     pub callback: Callback<SquareData>,
     pub chessboard: [SquareType; 64],
 }
 
-pub struct BoardComponent;
-impl Component for BoardComponent {
+pub struct Board;
+impl Component for Board {
     type Message = ();
-    type Properties = BoardComponentProps;
+    type Properties = BoardProps;
 
     fn create(_ctx: &Context<Self>) -> Self {
         Self
@@ -23,12 +23,12 @@ impl Component for BoardComponent {
 
         let mut square_components = VList::new();
         square_components.add_children((0..64).rev().map(|n| {
-            html! { <SquareComponent { callback } idx={ n } square={ board[n] }/> }
+            html! { <Square { callback } idx={ n } square={ board[n] }/> }
         }));
 
         html! {
             <>
-                <StyledSVGComponent class="chessboard-svg" svg={ CHESSBOARD_SVG }/>
+                <StyledSVG class="chessboard-svg" svg={ CHESSBOARD_SVG }/>
                 <div class="board">{ square_components }</div>
             </>
         }
