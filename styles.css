@@ -302,6 +302,23 @@ header a {
     background-color: rgb(40, 40, 40, 0.5);
 }
 
+.dragNdrop-input {
+    opacity: 0;
+    grid-row:  1 / -1;
+    grid-column:  1 / -1;
+
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    height: 100%;
+
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
 .dragNdrop-info {
     grid-column: 2;
     grid-row: 2;
@@ -352,4 +369,63 @@ header a {
     letter-spacing: 0.1em; 
     color: var(--fg);
     -webkit-text-stroke-width: 0;
+}
+
+.media-dragNdrop-zone {
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+
+    display: grid;
+    grid-template-columns: 1fr 90% 60px;
+    grid-template-rows: 60px 90% 1fr;
+
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.discard-media-icon {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.discard-media-svg {
+    align-self: flex-end;
+    margin-top: 10px;
+    margin-right: 15px;
+
+    transition-duration: 50ms;
+    z-index: 100;
+    width: 32px;
+    height: 32px;
+}
+
+.discard-media-svg path {
+    fill: var(--fg);
+    stroke: var(--bg);
+    stroke-width: 20px;
+}
+
+.discard-media-svg:hover {
+    transform: scale(1.25, 1.25);
+}
+
+.media-file {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    
+    align-self: center;
+    justify-self: center;
+    height: 100%;
+    width: auto;
 }
