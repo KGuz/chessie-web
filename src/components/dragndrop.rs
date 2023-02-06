@@ -30,8 +30,8 @@ impl Component for DragAndDrop {
             let file = data.files().unwrap_throw().item(0).unwrap_throw();
             
             let url = web_sys::Url::create_object_url_with_blob(&file).unwrap_throw();
-            let freader = web_sys::FileReader::new().unwrap_throw();
-            freader.read_as_array_buffer(&file).unwrap_throw();
+            // let freader = web_sys::FileReader::new().unwrap_throw();
+            // freader.read_as_array_buffer(&file).unwrap_throw();
 
             let img = html!{
                 <img src={url} class="media-file"/>
@@ -39,7 +39,7 @@ impl Component for DragAndDrop {
             DragAndDropMsg::DisplayMedia(img)
         });
 
-        let onclick = ctx.link().callback(|event: MouseEvent| {
+        let onclick = ctx.link().callback(|_event: MouseEvent| {
             DragAndDropMsg::RemoveFile
         });
 
@@ -66,7 +66,7 @@ impl Component for DragAndDrop {
                         <div class="dragNdrop-icon"><StyledSVG class="upload-svg" svg={ UPLOAD_SVG }/></div>
                         <div class="dragNdrop-text-title">{ "Upload position" }</div>
                         <div class="dragNdrop-text-desc">
-                            { "Drag and drop files here to upload." }<br/>
+                            { "Drag and drop files here to upload. " }
                             { "Only files that are less than 500mb in size will be accepted" }
                         </div>
                     </div>

@@ -109,8 +109,6 @@ header a {
 
 
 .details {
-    /* !DEBUG ONLY! */  background-color: rgba(204, 135, 15, 0.2) !important;
-
     border-left: var(--edge) solid var(--fg);
     border-top:  var(--edge) solid var(--fg);
     width: calc(100% - var(--edge));
@@ -265,7 +263,6 @@ header a {
 
 
 .preview {
-    /* !DEBUG ONLY! */ 
     grid-column: 2;
     grid-row: 1 / 3;
 
@@ -428,4 +425,48 @@ header a {
     justify-self: center;
     height: 100%;
     width: auto;
+}
+
+.fen-field {
+    display: flex;
+}
+
+.fen-field-textarea {
+    text-decoration: none;
+    margin: 1em;
+    width: calc(100% - 3em);
+    height: 4em;
+    resize:vertical;
+    min-height: 2em;
+    max-height: 50%;
+
+    background-color: var(--gb);
+    color: white;
+    -webkit-text-stroke-width: 0;
+    font-size: 1em;
+    border-radius: var(--radius);
+    outline: none;
+    text-indent: 0.25em;
+    line-height: 2em;
+    word-wrap: break-word;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.copy-svg {
+    align-self: flex-end;
+    margin-top: 10px;
+    margin-right: 15px;
+
+    transition-duration: 50ms;
+    z-index: 100;
+    width: 32px;
+    height: 32px;
+
+}
+
+.copy-svg path {
+    fill: var(--fg);
+    stroke: var(--bg);
+    stroke-width: 20px;
 }

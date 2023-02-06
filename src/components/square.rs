@@ -136,8 +136,8 @@ pub fn algebraic_noatation(idx: usize) -> String {
     let l = idx % 8;
     let n = (idx - l) / 8;
 
-    let l = 7 - l as u8 + 'a' as u8;
-    let n = n as u8 + '1' as u8;
+    let l = 7 - l as u8 + b'a';
+    let n = n as u8 + b'1';
 
     format!("{}{}", l as char, n as char)
 }

@@ -1,4 +1,4 @@
-use crate::components::{board::*, evalbar::*, square::*, styled_svg::*, dragndrop::*};
+use crate::components::{board::*, evalbar::*, square::*, dragndrop::*, fenfield::*};
 use yew::{html, Component, Context, Html};
 
 #[derive(Clone, Copy)]
@@ -32,7 +32,9 @@ impl Component for App {
                 <div class="preview">
                     <DragAndDrop />
                 </div>
-                <div class="details"></div>
+                <div class="details">
+                    <FenField chessboard={ self.chessboard }/>
+                </div>
             </main>
         }
     }
